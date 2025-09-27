@@ -20,5 +20,10 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	Run(db)
+
+	//题目1：基本CRUD操作
+	//RunCRUD(db)
+
+	//题目2:事务语句
+	RunTransaction(db)
 }
