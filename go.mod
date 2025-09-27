@@ -3,6 +3,7 @@ module homework
 go 1.25
 
 require (
+	github.com/jmoiron/sqlx v1.4.0
 	gorm.io/driver/mysql v1.6.0
 	gorm.io/gorm v1.30.0
 )
