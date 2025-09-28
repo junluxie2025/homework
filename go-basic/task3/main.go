@@ -18,10 +18,10 @@ func main() {
 	//RunTransaction(db)
 
 	//Sqlx入门 题目1：使用SQL扩展库进行查询
-	//RunSqlX1()
+	RunSqlX1()
 
 	//Sqlx入门 题目1：实现类型安全映射
-	//RunSqlX2()
+	RunSqlX2()
 
 	//进阶gorm 题目1：模型定义
 	RunGrom1(db)

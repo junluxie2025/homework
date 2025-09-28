@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"sync"
-	"time"
 )
 
 type SafeCount struct {
@@ -25,13 +24,16 @@ func (s *SafeCount) GetCount() int {
 
 func res9() {
 	safeCount := SafeCount{count: 0}
+	w := sync.WaitGroup{}
+	w.Add(10)
 	for i := 0; i < 10; i++ {
 		go func() {
+			defer w.Done()
 			for j := 0; j < 1000; j++ {
 				safeCount.Increment()
 			}
 		}()
 	}
-	time.Sleep(time.Second)
+	w.Wait()
 	fmt.Printf("计数器的值: %d", safeCount.GetCount())
 }

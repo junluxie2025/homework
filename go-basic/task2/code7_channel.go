@@ -2,26 +2,30 @@ package main
 
 import (
 	"fmt"
-	"time"
+	"sync"
 )
 
-func OnlyReceive(ch <-chan int) {
+func OnlyReceive(ch <-chan int, wg *sync.WaitGroup) {
+	defer wg.Done()
 	for i := range ch {
 		fmt.Printf("收到数据: %d \n", i)
 	}
 }
 
-func OnlySend(ch chan<- int) {
-	for i := 0; i < 10; i++ {
+func OnlySend(ch chan<- int, wg *sync.WaitGroup, count int) {
+	defer wg.Done()
+	for i := 0; i < count; i++ {
 		ch <- i
-		fmt.Printf("发送数据: %d \n", i)
 	}
 	close(ch)
 }
 
-func rse7() {
-	ch := make(chan int, 1)
-	go OnlySend(ch)
-	go OnlyReceive(ch)
-	time.Sleep(1 * time.Second)
+func res7() {
+	w := sync.WaitGroup{}
+	ch := make(chan int)
+	w.Add(1)
+	go OnlySend(ch, &w, 10)
+	w.Add(1)
+	go OnlyReceive(ch, &w)
+	w.Wait()
 }
