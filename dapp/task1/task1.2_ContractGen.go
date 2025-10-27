@@ -30,14 +30,14 @@ import (
 调用合约的方法，例如增加计数器的值。
 输出调用结果。
 */
-func main2() {
+func main() {
 
-	client, err := ethclient.Dial("https://sepolia.infura.io/v3/YOUR-PROJECT-ID")
+	client, err := ethclient.Dial("https://eth-sepolia.g.alchemy.com/v2/hKtjTkxwP7TTEEJjwt8CV")
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	contractAddress := common.HexToAddress("合约地址")
+	contractAddress := common.HexToAddress("0xaF112f3E479c02fcB6ea0E771725d0a0F8c95225")
 
 	//加载合约
 	myCounter, err := myCounter.NewMyCounter(contractAddress, client)
@@ -45,7 +45,7 @@ func main2() {
 		log.Fatal(err)
 	}
 
-	privateKey, err := crypto.HexToECDSA("")
+	privateKey, err := crypto.HexToECDSA("b439f9e75ff2813c6bb0f56235edbd3eebe06c1b6f64c8f441a955dd1e0084c7")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -63,7 +63,7 @@ func main2() {
 	fmt.Println("tx.Hash() ", tx.Hash().Hex())
 
 	callOpt := &bind.CallOpts{Context: context.Background()}
-	value, err := myCounter.Count(callOpt)
+	value, err := myCounter.GetCount(callOpt)
 	if err != nil {
 		log.Fatal(err)
 	}
