@@ -32,12 +32,12 @@ import (
 */
 func main() {
 
-	client, err := ethclient.Dial("https://eth-sepolia.g.alchemy.com/v2/hKtjTkxwP7TTEEJjwt8CV")
+	client, err := ethclient.Dial("https://eth-sepolia.g.alchemy.com/v2/XXX")
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	contractAddress := common.HexToAddress("0xaF112f3E479c02fcB6ea0E771725d0a0F8c95225")
+	contractAddress := common.HexToAddress("XXX")
 
 	//加载合约
 	myCounter, err := myCounter.NewMyCounter(contractAddress, client)
@@ -45,7 +45,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	privateKey, err := crypto.HexToECDSA("b439f9e75ff2813c6bb0f56235edbd3eebe06c1b6f64c8f441a955dd1e0084c7")
+	privateKey, err := crypto.HexToECDSA("XXX")
 	if err != nil {
 		log.Fatal(err)
 	}
